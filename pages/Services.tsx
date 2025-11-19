@@ -1,19 +1,10 @@
 import React from 'react';
 import SEO from '../components/SEO';
 import { useSite } from '../context/SiteContext';
-import { Building2, Home, PaintBucket, Key, Building } from 'lucide-react';
+import * as Icons from 'lucide-react';
 
 const Services: React.FC = () => {
   const { services } = useSite();
-
-  // Map icon names to components
-  const iconMap: Record<string, React.ElementType> = {
-    'Building2': Building2,
-    'Home': Home,
-    'PaintBucket': PaintBucket,
-    'Key': Key,
-    'Building': Building
-  };
 
   return (
     <div>
@@ -32,8 +23,8 @@ const Services: React.FC = () => {
       <div className="container mx-auto px-4 py-16">
         <div className="space-y-12">
           {services.map((service, index) => {
-            // Dynamic Icon Rendering with fallback
-            const IconComponent = iconMap[service.iconName] || Building;
+            // Dynamic Icon Rendering
+            const IconComponent = (Icons as any)[service.iconName] || Icons.Building;
             
             return (
               <div key={service.id} className={`flex flex-col md:flex-row gap-8 items-start ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
