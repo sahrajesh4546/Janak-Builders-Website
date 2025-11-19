@@ -41,4 +41,5 @@ export interface ContactSubmission {
   email: string;
   subject: string;
   message: string;
+  date: string;
 }
