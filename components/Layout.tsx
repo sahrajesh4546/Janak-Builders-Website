@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useSite } from '../context/SiteContext';
-import { Menu, X, Phone, Mail, Facebook, Linkedin, MessageSquare, LogIn, LayoutDashboard } from 'lucide-react';
+import { Menu, X, Phone, Mail, Facebook, Linkedin, MessageSquare, LogIn, LayoutDashboard, Sun, Moon } from 'lucide-react';
 
 const Layout: React.FC = () => {
-  const { settings, isAuthenticated } = useSite();
+  const { settings, isAuthenticated, theme, toggleTheme } = useSite();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -13,7 +13,7 @@ const Layout: React.FC = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <div className="flex flex-col min-h-screen font-sans">
+    <div className="flex flex-col min-h-screen font-sans transition-colors duration-300">
       {/* Top Bar */}
       <div className="bg-neutral-900 text-white text-sm py-2 hidden md:block">
         <div className="container mx-auto px-4 flex justify-between items-center">
@@ -29,7 +29,7 @@ const Layout: React.FC = () => {
       </div>
 
       {/* Navbar */}
-      <header className="bg-primary text-white sticky top-0 z-50 shadow-lg">
+      <header className="bg-primary dark:bg-gray-950 text-white sticky top-0 z-50 shadow-lg transition-colors duration-300">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="text-xl md:text-2xl font-serif font-bold flex flex-col leading-tight">
@@ -38,24 +38,33 @@ const Layout: React.FC = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex gap-8 items-center font-medium">
+          <nav className="hidden md:flex gap-6 lg:gap-8 items-center font-medium">
             <Link to="/" className={isActive('/')}>Home</Link>
             <Link to="/about" className={isActive('/about')}>About Us</Link>
             <Link to="/services" className={isActive('/services')}>Services</Link>
             <Link to="/projects" className={isActive('/projects')}>Projects</Link>
-            <Link to="/tools" className={isActive('/tools')}>Construction Tools</Link>
+            <Link to="/tools" className={isActive('/tools')}>Tools</Link>
             <Link to="/contact" className={isActive('/contact')}>Contact</Link>
             
             {/* Admin Login/Dashboard Link */}
             {isAuthenticated ? (
               <Link to="/admin/dashboard" className="text-secondary hover:text-white flex items-center gap-1 transition">
-                <LayoutDashboard size={18} /> Dashboard
+                <LayoutDashboard size={18} />
               </Link>
             ) : (
               <Link to="/admin" className="text-white hover:text-secondary flex items-center gap-1 transition">
-                <LogIn size={18} /> Login
+                <LogIn size={18} />
               </Link>
             )}
+
+            {/* Theme Toggle */}
+            <button 
+              onClick={toggleTheme} 
+              className="p-2 rounded-full hover:bg-white/10 text-white transition"
+              aria-label="Toggle Theme"
+            >
+              {theme === 'dark' ? <Sun size={20} className="text-secondary" /> : <Moon size={20} />}
+            </button>
 
             <Link to="/contact" className="bg-secondary text-primary px-5 py-2 rounded-full font-bold hover:bg-yellow-400 transition">
               Get Estimate
@@ -63,14 +72,19 @@ const Layout: React.FC = () => {
           </nav>
 
           {/* Mobile Toggle */}
-          <button onClick={toggleMenu} className="md:hidden text-white">
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          <div className="flex items-center gap-4 md:hidden">
+            <button onClick={toggleTheme} className="text-white">
+               {theme === 'dark' ? <Sun size={24} className="text-secondary" /> : <Moon size={24} />}
+            </button>
+            <button onClick={toggleMenu} className="text-white">
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-primary border-t border-blue-900">
+          <div className="md:hidden bg-primary dark:bg-gray-950 border-t border-blue-900 dark:border-gray-800">
             <nav className="flex flex-col p-4 gap-4">
               <Link to="/" onClick={toggleMenu} className="text-white hover:text-secondary">Home</Link>
               <Link to="/about" onClick={toggleMenu} className="text-white hover:text-secondary">About Us</Link>
@@ -96,12 +110,12 @@ const Layout: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow bg-neutral-100">
+      <main className="flex-grow bg-neutral-100 dark:bg-gray-900 transition-colors duration-300">
         <Outlet />
       </main>
 
       {/* Footer */}
-      <footer className="bg-primary text-white pt-16 pb-8 border-t-4 border-secondary">
+      <footer className="bg-primary dark:bg-gray-950 text-white pt-16 pb-8 border-t-4 border-secondary transition-colors duration-300">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           
           {/* About */}
@@ -149,7 +163,7 @@ const Layout: React.FC = () => {
           </div>
         </div>
         
-        <div className="text-center text-gray-500 text-sm border-t border-blue-900 pt-8">
+        <div className="text-center text-gray-500 text-sm border-t border-blue-900 dark:border-gray-800 pt-8">
           &copy; {new Date().getFullYear()} {settings.companyName}. All Rights Reserved.
         </div>
       </footer>

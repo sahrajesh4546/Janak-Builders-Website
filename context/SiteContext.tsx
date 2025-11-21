@@ -30,6 +30,10 @@ interface SiteContextType {
   isAuthenticated: boolean;
   login: () => void;
   logout: () => void;
+
+  // Theme
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
 }
 
 const SiteContext = createContext<SiteContextType | undefined>(undefined);
@@ -46,6 +50,31 @@ export const SiteProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [testimonials, setTestimonials] = useState<Testimonial[]>(INITIAL_TESTIMONIALS);
   const [contactSubmissions, setContactSubmissions] = useState<ContactSubmission[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Theme State
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
 
   const updateSettings = (newSettings: SiteSettings) => setSettings(newSettings);
   
@@ -107,7 +136,9 @@ export const SiteProvider: React.FC<{ children: React.ReactNode }> = ({ children
       addContactSubmission,
       isAuthenticated,
       login,
-      logout
+      logout,
+      theme,
+      toggleTheme
     }}>
       {children}
     </SiteContext.Provider>

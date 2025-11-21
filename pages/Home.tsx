@@ -32,7 +32,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* Expertise & Why Choose Us (Split Section) */}
-      <section className="bg-primary text-white py-16">
+      <section className="bg-primary dark:bg-gray-900 text-white py-16 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Expertise */}
@@ -89,51 +89,51 @@ const Home: React.FC = () => {
       </section>
 
       {/* Packages Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <span className="bg-secondary text-primary px-6 py-2 rounded-full font-bold uppercase text-sm tracking-wide">Pricing Plans</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mt-4">Custom packages available based on design & budget</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary dark:text-white mt-4">Custom packages available based on design & budget</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Basic Package */}
-            <div className="border border-gray-200 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 flex flex-col">
-              <div className="bg-gray-50 p-8 border-b border-gray-200 text-center">
-                <h3 className="text-2xl font-bold text-primary uppercase tracking-wide">BASIC PACKAGE</h3>
-                <div className="mt-4 text-3xl font-bold text-secondary">Rs. 3000<span className="text-lg text-gray-500 font-normal">/sq.ft</span></div>
+            <div className="border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 flex flex-col bg-white dark:bg-gray-900">
+              <div className="bg-gray-50 dark:bg-gray-800 p-8 border-b border-gray-200 dark:border-gray-700 text-center transition-colors duration-300">
+                <h3 className="text-2xl font-bold text-primary dark:text-white uppercase tracking-wide">BASIC PACKAGE</h3>
+                <div className="mt-4 text-3xl font-bold text-secondary">Rs. 3000<span className="text-lg text-gray-500 dark:text-gray-400 font-normal">/sq.ft</span></div>
               </div>
-              <div className="p-8 bg-white flex-grow">
-                <ul className="space-y-4 text-gray-700">
-                  <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-primary rounded-full flex-shrink-0"></div> Branded materials & modern finishing</li>
-                  <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-primary rounded-full flex-shrink-0"></div> Modular kitchen</li>
-                  <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-primary rounded-full flex-shrink-0"></div> Premium tiles</li>
-                  <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-primary rounded-full flex-shrink-0"></div> False ceiling</li>
-                  <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-primary rounded-full flex-shrink-0"></div> Better-quality electrical & plumbing</li>
+              <div className="p-8 bg-white dark:bg-gray-900 flex-grow transition-colors duration-300">
+                <ul className="space-y-4 text-gray-700 dark:text-gray-300">
+                  <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-primary dark:bg-white rounded-full flex-shrink-0"></div> Branded materials & modern finishing</li>
+                  <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-primary dark:bg-white rounded-full flex-shrink-0"></div> Modular kitchen</li>
+                  <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-primary dark:bg-white rounded-full flex-shrink-0"></div> Premium tiles</li>
+                  <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-primary dark:bg-white rounded-full flex-shrink-0"></div> False ceiling</li>
+                  <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-primary dark:bg-white rounded-full flex-shrink-0"></div> Better-quality electrical & plumbing</li>
                 </ul>
-                <div className="mt-8 pt-6 border-t border-dashed border-gray-300 text-center">
-                  <p className="font-bold text-primary">Ideal for modern family homes</p>
+                <div className="mt-8 pt-6 border-t border-dashed border-gray-300 dark:border-gray-700 text-center">
+                  <p className="font-bold text-primary dark:text-white">Ideal for modern family homes</p>
                 </div>
               </div>
             </div>
 
             {/* Premium Package */}
-            <div className="border-2 border-primary rounded-2xl shadow-xl overflow-hidden transform md:-translate-y-4 flex flex-col relative">
+            <div className="border-2 border-primary dark:border-secondary rounded-2xl shadow-xl overflow-hidden transform md:-translate-y-4 flex flex-col relative bg-white dark:bg-gray-900">
               <div className="absolute top-0 right-0 bg-secondary text-xs font-bold px-3 py-1 text-primary uppercase rounded-bl-lg">Most Popular</div>
-              <div className="bg-primary p-8 text-center text-white">
+              <div className="bg-primary dark:bg-gray-950 p-8 text-center text-white transition-colors duration-300">
                 <h3 className="text-2xl font-bold uppercase tracking-wide">PREMIUM PACKAGE</h3>
                 <div className="mt-4 text-3xl font-bold text-secondary">Rs. 3500<span className="text-lg text-white/70 font-normal">/sq.ft</span></div>
               </div>
-              <div className="p-8 bg-white flex-grow">
-                <ul className="space-y-4 text-gray-700">
+              <div className="p-8 bg-white dark:bg-gray-900 flex-grow transition-colors duration-300">
+                <ul className="space-y-4 text-gray-700 dark:text-gray-300">
                    <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div> High-end imported materials</li>
                    <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div> Luxury tiles / parquet flooring</li>
                    <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div> Modular kitchen + elite fittings</li>
                    <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div> False ceiling with LED design</li>
                    <li className="flex gap-3"><div className="mt-2 w-2 h-2 bg-secondary rounded-full flex-shrink-0"></div> Premium bathroom fittings</li>
                 </ul>
-                <div className="mt-8 pt-6 border-t border-dashed border-gray-300 text-center">
-                   <p className="font-bold text-primary">Ideal for villas, hotels & commercial spaces</p>
+                <div className="mt-8 pt-6 border-t border-dashed border-gray-300 dark:border-gray-700 text-center">
+                   <p className="font-bold text-primary dark:text-white">Ideal for villas, hotels & commercial spaces</p>
                 </div>
               </div>
             </div>
@@ -142,11 +142,11 @@ const Home: React.FC = () => {
       </section>
 
       {/* Latest Projects Snippet */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-             <h2 className="text-3xl font-serif font-bold text-primary">Latest Projects</h2>
-             <p className="text-gray-600 mt-2">A glimpse of what we build.</p>
+             <h2 className="text-3xl font-serif font-bold text-primary dark:text-white">Latest Projects</h2>
+             <p className="text-gray-600 dark:text-gray-400 mt-2">A glimpse of what we build.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {projects.slice(0, 3).map(project => (
@@ -165,7 +165,7 @@ const Home: React.FC = () => {
             ))}
           </div>
           <div className="text-center mt-8">
-             <Link to="/projects" className="text-primary font-bold hover:text-secondary transition underline">View Full Portfolio</Link>
+             <Link to="/projects" className="text-primary dark:text-white font-bold hover:text-secondary transition underline">View Full Portfolio</Link>
           </div>
         </div>
       </section>
