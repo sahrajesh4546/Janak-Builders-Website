@@ -2,7 +2,7 @@ import React from 'react';
 import Hero from '../components/Hero';
 import SEO from '../components/SEO';
 import { useSite } from '../context/SiteContext';
-import { ArrowRight, CheckCircle, Wrench, Phone, Mail } from 'lucide-react';
+import { ArrowRight, CheckCircle, Wrench, Phone, Mail, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
@@ -11,7 +11,7 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col">
       <SEO 
-        title="Best Construction Company in Kathmandu" 
+        title="" // Empty title ensures tab shows only "Janak Builders Nepal"
         description="Janak Builders is a leading construction company in Nepal offering residential & commercial building services, cost estimation, and earthquake-resistant designs."
         keywords="construction company nepal, house builders kathmandu, building contractor lalitpur, earthquake resistant homes nepal, janak builders"
       />
@@ -96,7 +96,7 @@ const Home: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-primary dark:text-white mt-4">Custom packages available based on design & budget</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-10">
             {/* Basic Package */}
             <div className="border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 flex flex-col bg-white dark:bg-gray-900">
               <div className="bg-gray-50 dark:bg-gray-800 p-8 border-b border-gray-200 dark:border-gray-700 text-center transition-colors duration-300">
@@ -138,6 +138,14 @@ const Home: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Pricing Disclaimer Note */}
+          <div className="max-w-4xl mx-auto bg-yellow-50 dark:bg-gray-700 border border-yellow-200 dark:border-gray-600 rounded-lg p-4 flex gap-3 items-start shadow-sm">
+             <AlertCircle className="text-secondary flex-shrink-0 mt-0.5" size={20} />
+             <p className="text-sm text-gray-700 dark:text-gray-300">
+               <strong>Note:</strong> The prices mentioned above are indicative base rates. Actual construction costs may vary depending on the <strong>location</strong> of the site, transportation costs, soil conditions, and specific customizations. Please contact us for a detailed site-specific estimate.
+             </p>
+          </div>
         </div>
       </section>
 
@@ -174,7 +182,7 @@ const Home: React.FC = () => {
       <section className="bg-secondary py-12 relative overflow-hidden">
          <div className="container mx-auto px-4 text-center relative z-10">
            <h2 className="text-2xl md:text-3xl font-bold text-primary uppercase mb-4 tracking-tight">
-             Book Your Free Site Visit & Cost Estimate Today!
+             Book Your Site Visit & Cost Estimate Today!
            </h2>
            <h3 className="text-3xl md:text-5xl font-serif font-bold text-white mb-10 drop-shadow-md">
              Let's Build Your Dream Together!

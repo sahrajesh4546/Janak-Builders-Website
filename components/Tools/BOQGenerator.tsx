@@ -46,24 +46,24 @@ const BOQGenerator: React.FC = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow-md border-t-4 border-secondary h-full flex flex-col">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="bg-primary/10 p-3 rounded-full text-primary">
-            <ClipboardList size={24} />
+    <div className="bg-white p-6 md:p-8 rounded-2xl shadow-lg border-t-8 border-secondary h-full flex flex-col">
+      <div className="flex items-center gap-4 mb-8">
+        <div className="bg-primary/10 p-4 rounded-full text-primary">
+            <ClipboardList size={28} />
         </div>
         <div>
-            <h3 className="text-2xl font-bold text-primary">AI BOQ Generator</h3>
-            <p className="text-xs text-gray-500">Gemini 2.5 Flash</p>
+            <h3 className="text-2xl font-bold text-gray-900">AI BOQ Generator</h3>
+            <p className="text-sm text-gray-500 font-medium">Gemini 2.5 Flash</p>
         </div>
       </div>
 
-      <div className="space-y-4 mb-6">
+      <div className="space-y-6 mb-8">
         <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Project Type</label>
+            <label className="block text-xs font-bold text-gray-800 uppercase tracking-wide mb-3">Project Type</label>
             <select 
                 value={projectType}
                 onChange={(e) => setProjectType(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none bg-white text-gray-900"
+                className="w-full p-4 border-2 border-gray-300 rounded-xl focus:border-secondary focus:ring-0 outline-none bg-white text-gray-900 font-medium h-[60px]"
             >
                 <option>Residential House</option>
                 <option>Commercial Building</option>
@@ -71,23 +71,23 @@ const BOQGenerator: React.FC = () => {
                 <option>Garage/Outhouse</option>
             </select>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-6">
             <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">Area (Sq. Ft)</label>
+                <label className="block text-xs font-bold text-gray-800 uppercase tracking-wide mb-3">Area (Sq. Ft)</label>
                 <input 
                     type="number" 
                     value={area}
                     onChange={(e) => setArea(Number(e.target.value))}
-                    className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none text-gray-900"
+                    className="w-full p-4 border-2 border-gray-300 rounded-xl focus:border-secondary focus:ring-0 outline-none text-gray-900 font-bold bg-white"
                 />
             </div>
             <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">Floors</label>
+                <label className="block text-xs font-bold text-gray-800 uppercase tracking-wide mb-3">Floors</label>
                 <input 
                     type="number" 
                     value={floors}
                     onChange={(e) => setFloors(Number(e.target.value))}
-                    className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none text-gray-900"
+                    className="w-full p-4 border-2 border-gray-300 rounded-xl focus:border-secondary focus:ring-0 outline-none text-gray-900 font-bold bg-white"
                 />
             </div>
         </div>
@@ -95,18 +95,17 @@ const BOQGenerator: React.FC = () => {
         <button 
             onClick={generateBOQ}
             disabled={loading}
-            className={`w-full bg-secondary text-primary font-bold py-3 rounded hover:bg-yellow-400 transition flex items-center justify-center gap-2 ${loading ? 'opacity-70' : ''}`}
+            className={`w-full bg-secondary text-primary font-bold text-lg py-4 rounded-xl hover:bg-yellow-400 transition flex items-center justify-center gap-3 shadow-lg ${loading ? 'opacity-70' : ''}`}
         >
-            {loading ? <Loader2 size={20} className="animate-spin" /> : <Sparkles size={20} />}
+            {loading ? <Loader2 size={24} className="animate-spin" /> : <Sparkles size={24} />}
             {loading ? 'Generating Estimate...' : 'Generate BOQ'}
         </button>
       </div>
 
       {boqResult && (
-        <div className="flex-grow bg-gray-50 p-4 rounded border border-gray-200 overflow-auto max-h-96 text-sm">
-            <div className="prose prose-sm max-w-none">
-                {/* Simple markdown rendering by replacing newlines. For a real app, use a markdown parser. */}
-                <pre className="whitespace-pre-wrap font-sans text-gray-700">{boqResult}</pre>
+        <div className="flex-grow bg-slate-50 p-6 rounded-xl border border-gray-200 overflow-auto max-h-[500px] shadow-inner custom-scrollbar">
+            <div className="prose prose-sm max-w-none text-gray-900">
+                <pre className="whitespace-pre-wrap font-sans text-gray-900 leading-relaxed text-sm">{boqResult}</pre>
             </div>
         </div>
       )}

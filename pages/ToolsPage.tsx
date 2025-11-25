@@ -21,78 +21,80 @@ const ToolsPage: React.FC = () => {
       {/* Header Banner */}
       <div className="bg-primary dark:bg-gray-950 text-white py-16 transition-colors duration-300">
         <div className="container mx-auto px-4 text-center">
-           <h1 className="text-4xl font-serif font-bold mb-4">Engineering & Construction Tools</h1>
-           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-             Empowering engineers and home builders with advanced utilities and AI-powered estimation tools.
+           <h1 className="text-3xl md:text-5xl font-serif font-bold mb-6">Engineering Suite</h1>
+           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+             Professional grade calculation and estimation tools designed for Nepalese Engineers, Contractors, and Homeowners.
            </p>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-16 space-y-20">
+      <div className="container mx-auto px-4 py-12 max-w-7xl space-y-20">
         
-        {/* Section 1: Engineering Calculators */}
-        <section>
-          <div className="flex items-center gap-3 mb-8 border-b-2 border-gray-200 dark:border-gray-700 pb-4">
-            <div className="bg-secondary p-2 rounded text-primary">
-              <Calculator size={24} />
+        {/* ENGINEERING SECTION */}
+        <section id="engineering">
+            <div className="flex items-center gap-3 mb-8 border-b border-gray-200 dark:border-gray-700 pb-4">
+                <div className="bg-secondary p-2 rounded-lg text-primary">
+                    <Calculator size={24} />
+                </div>
+                <h2 className="text-2xl font-bold text-primary dark:text-white">Engineering Calculators</h2>
             </div>
-            <h2 className="text-3xl font-serif font-bold text-primary dark:text-white">Engineering Calculators</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
-            <div className="w-full">
-              <ScientificCalculator />
+            
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
+              <div className="w-full">
+                <ScientificCalculator />
+              </div>
+              <div className="w-full">
+                <MaterialCalculator />
+              </div>
             </div>
-            <div className="w-full">
-              <MaterialCalculator />
-            </div>
-          </div>
         </section>
 
-        {/* Section 2: Estimation & Converters */}
-        <section>
-          <div className="flex items-center gap-3 mb-8 border-b-2 border-gray-200 dark:border-gray-700 pb-4">
-            <div className="bg-secondary p-2 rounded text-primary">
-              <Ruler size={24} />
+        {/* ESTIMATION SECTION */}
+        <section id="estimation">
+            <div className="flex items-center gap-3 mb-8 border-b border-gray-200 dark:border-gray-700 pb-4">
+                <div className="bg-secondary p-2 rounded-lg text-primary">
+                    <Ruler size={24} />
+                </div>
+                <h2 className="text-2xl font-bold text-primary dark:text-white">Estimation Tools</h2>
             </div>
-            <h2 className="text-3xl font-serif font-bold text-primary dark:text-white">Estimation & Conversions</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-            <div className="h-full">
-              <CostEstimator />
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+              <div className="h-full">
+                <CostEstimator />
+              </div>
+              <div className="h-full">
+                <UnitConverter />
+              </div>
             </div>
-            <div className="h-full">
-              <UnitConverter />
-            </div>
-          </div>
         </section>
 
-        {/* Section 3: AI Power Tools */}
-        <section>
-          <div className="flex items-center gap-3 mb-8 border-b-2 border-gray-200 dark:border-gray-700 pb-4">
-            <div className="bg-secondary p-2 rounded text-primary">
-              <BrainCircuit size={24} />
+        {/* AI TOOLS SECTION */}
+        <section id="ai-tools">
+            <div className="flex items-center gap-3 mb-8 border-b border-gray-200 dark:border-gray-700 pb-4">
+                <div className="bg-secondary p-2 rounded-lg text-primary">
+                    <BrainCircuit size={24} />
+                </div>
+                <h2 className="text-2xl font-bold text-primary dark:text-white">AI Powered Tools</h2>
             </div>
-            <div>
-              <h2 className="text-3xl font-serif font-bold text-primary dark:text-white flex items-center gap-3">
-                AI Power Suite 
-                <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded-full font-sans font-normal tracking-wide">BETA</span>
-              </h2>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
-            <div className="w-full">
-              <BOQGenerator />
-            </div>
-            <div className="w-full grid grid-cols-1 gap-8">
-              <ImageAnalyzer />
-              <ImageEditor />
-            </div>
-          </div>
-        </section>
 
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 border border-blue-100 dark:border-gray-700 p-6 rounded-xl text-center shadow-sm mb-8">
+                <p className="text-lg text-blue-900 dark:text-blue-100 flex items-center justify-center gap-3">
+                    <BrainCircuit size={24} className="text-secondary" />
+                    Powered by <strong>Google Gemini AI</strong> (Flash 2.5 & Pro 3.0) for advanced construction intelligence.
+                </p>
+            </div>
+
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
+                <div className="w-full">
+                    <BOQGenerator />
+                </div>
+                <div className="w-full grid grid-cols-1 gap-8">
+                    <ImageAnalyzer />
+                    <ImageEditor />
+                </div>
+            </div>
+        </section>
+        
       </div>
     </div>
   );

@@ -9,9 +9,10 @@ export const INITIAL_SETTINGS: SiteSettings = {
   email: "Janakbuilder@gmail.com",
   phone: "+977 9807850508 / 9844297168",
   address: "Kathmandu, Nepal",
-  facebookUrl: "https://facebook.com",
-  linkedinUrl: "https://linkedin.com",
-  whatsappNumber: "9779807850508",
+  facebookUrl: "https://www.facebook.com/profile.php?id=61583499465975",
+  linkedinUrl: "https://www.linkedin.com/in/mukesh-sah-425321175/",
+  whatsappNumber: "9779844297168",
+  instagramUrl: "https://www.instagram.com/janakbuilders",
   logoUrl: "https://i.imgur.com/DA8XYIF.png"
 };
 

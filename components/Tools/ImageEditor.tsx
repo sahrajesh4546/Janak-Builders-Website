@@ -35,7 +35,6 @@ const ImageEditor: React.FC = () => {
         const reader = new FileReader();
         reader.onload = () => {
             const result = reader.result as string;
-            // Remove data:image/jpeg;base64, prefix
             const base64 = result.split(',')[1];
             resolve(base64);
         };
@@ -63,11 +62,8 @@ const ImageEditor: React.FC = () => {
         },
       });
 
-      // Iterate through parts to find the image part. 
-      // Sometimes model returns text thoughts before the image.
       let generatedImageUrl = null;
       const parts = response.candidates?.[0]?.content?.parts;
-      
       if (parts) {
         for (const part of parts) {
           if (part.inlineData && part.inlineData.data) {
@@ -92,19 +88,19 @@ const ImageEditor: React.FC = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow-md border-t-4 border-secondary h-full flex flex-col">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="bg-primary/10 p-3 rounded-full text-primary">
-            <ImagePlus size={24} />
+    <div className="bg-white p-6 md:p-8 rounded-2xl shadow-lg border-t-8 border-secondary h-full flex flex-col">
+      <div className="flex items-center gap-4 mb-8">
+        <div className="bg-primary/10 p-4 rounded-full text-primary">
+            <ImagePlus size={28} />
         </div>
         <div>
-            <h3 className="text-2xl font-bold text-primary">AI Image Editor</h3>
-            <p className="text-xs text-gray-500">Gemini 2.5 Flash Image</p>
+            <h3 className="text-2xl font-bold text-gray-900">AI Image Editor</h3>
+            <p className="text-sm text-gray-500 font-medium">Gemini 2.5 Flash Image</p>
         </div>
       </div>
       
       <div className="space-y-6 flex-grow">
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:bg-gray-50 transition relative overflow-hidden min-h-[200px] flex flex-col justify-center">
+        <div className="border-4 border-dashed border-gray-200 rounded-xl p-8 text-center hover:bg-gray-50 hover:border-secondary transition relative overflow-hidden min-h-[250px] flex flex-col justify-center bg-gray-50">
             <input 
                 type="file" 
                 accept="image/*"
@@ -112,58 +108,58 @@ const ImageEditor: React.FC = () => {
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
             />
             {previewUrl ? (
-                <div className="relative h-48 w-full">
-                    <img src={previewUrl} alt="Preview" className="w-full h-full object-contain rounded" />
-                    <div className="absolute bottom-0 right-0 bg-primary text-white text-xs px-2 py-1 rounded-tl z-20 pointer-events-none">Change</div>
+                <div className="relative h-64 w-full">
+                    <img src={previewUrl} alt="Preview" className="w-full h-full object-contain rounded-lg" />
+                    <div className="absolute bottom-4 right-4 bg-primary text-white text-xs px-3 py-1 rounded-full shadow-lg z-20 pointer-events-none font-bold">Change Image</div>
                 </div>
             ) : (
-                <div className="flex flex-col items-center text-gray-500">
-                    <Upload size={32} className="mb-2" />
-                    <p className="text-sm font-semibold">Upload photo to edit</p>
-                    <p className="text-xs mt-1">JPG, PNG supported</p>
+                <div className="flex flex-col items-center text-gray-400">
+                    <Upload size={48} className="mb-4 text-secondary" />
+                    <p className="text-lg font-bold text-gray-700">Upload photo to edit</p>
+                    <p className="text-sm font-medium mt-1 text-gray-500">JPG, PNG supported</p>
                 </div>
             )}
         </div>
 
         <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">What should we change?</label>
-            <div className="flex gap-2">
+            <label className="block text-xs font-bold text-gray-800 uppercase tracking-wide mb-3">Edit Prompt</label>
+            <div className="flex gap-3">
                 <input 
                     type="text"
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     placeholder="e.g. 'Add a retro filter', 'Remove background'"
-                    className="flex-grow p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none text-gray-900"
+                    className="flex-grow p-4 border-2 border-gray-300 rounded-xl focus:border-secondary focus:ring-0 outline-none text-gray-900 font-medium bg-white"
                 />
                 <button 
                     onClick={handleGenerate}
                     disabled={loading || !selectedFile || !prompt}
-                    className={`bg-secondary text-primary font-bold px-6 rounded hover:bg-yellow-400 transition flex items-center gap-2 ${loading || !selectedFile || !prompt ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    className={`bg-secondary text-primary font-bold px-8 rounded-xl hover:bg-yellow-400 transition flex items-center gap-2 shadow-md whitespace-nowrap ${loading || !selectedFile || !prompt ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
-                    {loading ? <Loader2 size={20} className="animate-spin" /> : <Wand2 size={20} />}
+                    {loading ? <Loader2 size={24} className="animate-spin" /> : <Wand2 size={24} />}
                     {loading ? '' : 'Edit'}
                 </button>
             </div>
         </div>
 
         {error && (
-            <div className="bg-red-50 text-red-600 text-sm p-3 rounded border border-red-100">
+            <div className="bg-red-50 text-red-700 font-medium text-sm p-4 rounded-lg border border-red-200">
                 {error}
             </div>
         )}
 
         {generatedImage && (
-            <div className="mt-6 space-y-3 animate-in fade-in slide-in-from-bottom-4">
-                <p className="text-sm font-bold text-gray-700">Result:</p>
-                <div className="border rounded-lg overflow-hidden bg-gray-50">
+            <div className="mt-8 space-y-4 animate-in fade-in slide-in-from-bottom-4">
+                <p className="text-sm font-bold text-gray-800 uppercase tracking-wide">Generated Result:</p>
+                <div className="border-2 rounded-xl overflow-hidden bg-white shadow-lg">
                     <img src={generatedImage} alt="Generated" className="w-full h-auto" />
                 </div>
                 <a 
                     href={generatedImage} 
                     download="janak-ai-edit.png"
-                    className="block w-full bg-primary text-white text-center py-2 rounded font-bold hover:bg-blue-900 transition flex items-center justify-center gap-2"
+                    className="block w-full bg-primary text-white text-center py-4 rounded-xl font-bold hover:bg-blue-900 transition flex items-center justify-center gap-3 shadow-lg"
                 >
-                    <Download size={16} /> Download Image
+                    <Download size={20} /> Download Image
                 </a>
             </div>
         )}

@@ -26,6 +26,7 @@ export interface SiteSettings {
   linkedinUrl: string;
   whatsappNumber: string;
   logoUrl?: string;
+  instagramUrl?: string;
 }
 
 export interface Testimonial {

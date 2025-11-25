@@ -16,7 +16,9 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   const location = useLocation();
   const siteUrl = window.location.origin;
-  const fullTitle = `${title} | Janak Builders Nepal`;
+  
+  // If title is empty, just show the brand name. Otherwise append it.
+  const fullTitle = title ? `${title} | Janak Builders Nepal` : 'Janak Builders Nepal';
 
   useEffect(() => {
     // Update Title

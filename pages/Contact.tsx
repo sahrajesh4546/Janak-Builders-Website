@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO';
 import { useSite } from '../context/SiteContext';
-import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, CheckCircle, Facebook, Instagram, Linkedin, MessageSquare, PhoneCall } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const { settings, addContactSubmission } = useSite();
@@ -93,8 +93,79 @@ const Contact: React.FC = () => {
               </div>
             </div>
 
+            {/* Social Media & Apps Section */}
+            <div className="mt-10 pt-8 border-t border-gray-200 dark:border-gray-700">
+              <h3 className="text-2xl font-bold text-primary dark:text-white mb-6">Connect on Apps</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a 
+                  href={`https://wa.me/${settings.whatsappNumber}`} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center gap-3 bg-[#25D366]/10 p-4 rounded-lg hover:bg-[#25D366]/20 transition border border-[#25D366]/20 group"
+                >
+                  <MessageSquare className="text-[#25D366]" size={28} />
+                  <div>
+                    <h5 className="font-bold text-gray-800 dark:text-white">WhatsApp</h5>
+                    <p className="text-sm text-gray-500 group-hover:text-[#25D366] transition">+{settings.whatsappNumber}</p>
+                  </div>
+                </a>
+
+                <a 
+                  href={`viber://chat?number=%2B${settings.whatsappNumber}`} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center gap-3 bg-[#7360f2]/10 p-4 rounded-lg hover:bg-[#7360f2]/20 transition border border-[#7360f2]/20 group"
+                >
+                  <PhoneCall className="text-[#7360f2]" size={28} />
+                  <div>
+                    <h5 className="font-bold text-gray-800 dark:text-white">Viber</h5>
+                    <p className="text-sm text-gray-500 group-hover:text-[#7360f2] transition">+{settings.whatsappNumber}</p>
+                  </div>
+                </a>
+
+                <a 
+                  href={settings.facebookUrl} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center gap-3 bg-[#1877F2]/10 p-4 rounded-lg hover:bg-[#1877F2]/20 transition border border-[#1877F2]/20 group"
+                >
+                  <Facebook className="text-[#1877F2]" size={28} />
+                  <div>
+                    <h5 className="font-bold text-gray-800 dark:text-white">Facebook</h5>
+                    <p className="text-sm text-gray-500 group-hover:text-[#1877F2] transition">Follow Page</p>
+                  </div>
+                </a>
+
+                <a 
+                  href={settings.instagramUrl} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center gap-3 bg-[#E1306C]/10 p-4 rounded-lg hover:bg-[#E1306C]/20 transition border border-[#E1306C]/20 group"
+                >
+                  <Instagram className="text-[#E1306C]" size={28} />
+                  <div>
+                    <h5 className="font-bold text-gray-800 dark:text-white">Instagram</h5>
+                    <p className="text-sm text-gray-500 group-hover:text-[#E1306C] transition">@janakbuilders</p>
+                  </div>
+                </a>
+
+                 <a 
+                  href={settings.linkedinUrl} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center gap-3 bg-[#0077b5]/10 p-4 rounded-lg hover:bg-[#0077b5]/20 transition border border-[#0077b5]/20 group"
+                >
+                  <Linkedin className="text-[#0077b5]" size={28} />
+                  <div>
+                    <h5 className="font-bold text-gray-800 dark:text-white">LinkedIn</h5>
+                    <p className="text-sm text-gray-500 group-hover:text-[#0077b5] transition">Connect</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
             {/* Map Placeholder */}
-            <div className="mt-8 w-full h-64 bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden relative">
+            <div className="mt-8 w-full h-64 bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden relative border border-gray-300 dark:border-gray-700">
               <iframe 
                 title="Office Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.31625949266!2d85.29111309658248!3d27.70895594444539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2044600!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp" 
@@ -107,11 +178,11 @@ const Contact: React.FC = () => {
           </div>
 
           {/* Form */}
-          <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 transition-colors duration-300">
+          <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 transition-colors duration-300 h-fit sticky top-24">
             {submitted ? (
               <div className="h-full flex flex-col justify-center items-center text-center">
                 <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded-full text-green-600 dark:text-green-400 mb-4">
-                  <CheckCircleIcon />
+                  <CheckCircle size={48} />
                 </div>
                 <h3 className="text-2xl font-bold text-primary dark:text-white mb-2">Message Prepared!</h3>
                 <p className="text-gray-600 dark:text-gray-300">We have opened your email client to send this message to <strong>janakbuilder@gmail.com</strong>.</p>
@@ -150,9 +221,5 @@ const Contact: React.FC = () => {
     </div>
   );
 };
-
-const CheckCircleIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-)
 
 export default Contact;

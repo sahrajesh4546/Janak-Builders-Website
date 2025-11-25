@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useSite } from '../context/SiteContext';
-import { Menu, X, Phone, Mail, Facebook, Linkedin, MessageSquare, LogIn, LayoutDashboard, Sun, Moon, Eye } from 'lucide-react';
+import { Menu, X, Phone, Mail, Facebook, Linkedin, MessageSquare, LogIn, LayoutDashboard, Sun, Moon, Instagram, PhoneCall } from 'lucide-react';
 
 const Layout: React.FC = () => {
   const { settings, isAuthenticated, theme, toggleTheme } = useSite();
@@ -37,9 +37,12 @@ const Layout: React.FC = () => {
             <span className="flex items-center gap-2"><Phone size={14} /> {settings.phone}</span>
             <span className="flex items-center gap-2"><Mail size={14} /> {settings.email}</span>
           </div>
-          <div className="flex gap-4">
-            <a href={settings.facebookUrl} target="_blank" rel="noreferrer" className="hover:text-secondary"><Facebook size={14} /></a>
-            <a href={settings.linkedinUrl} target="_blank" rel="noreferrer" className="hover:text-secondary"><Linkedin size={14} /></a>
+          <div className="flex gap-4 items-center">
+            <a href={settings.facebookUrl} target="_blank" rel="noreferrer" className="hover:text-secondary" title="Facebook"><Facebook size={16} /></a>
+            <a href={settings.instagramUrl} target="_blank" rel="noreferrer" className="hover:text-secondary" title="Instagram"><Instagram size={16} /></a>
+            <a href={settings.linkedinUrl} target="_blank" rel="noreferrer" className="hover:text-secondary" title="LinkedIn"><Linkedin size={16} /></a>
+            <a href={`https://wa.me/${settings.whatsappNumber}`} target="_blank" rel="noreferrer" className="hover:text-secondary" title="WhatsApp"><MessageSquare size={16} /></a>
+            <a href={`viber://chat?number=%2B${settings.whatsappNumber}`} target="_blank" rel="noreferrer" className="hover:text-secondary" title="Viber"><PhoneCall size={16} /></a>
           </div>
         </div>
       </div>
@@ -149,9 +152,12 @@ const Layout: React.FC = () => {
               <br/>
               Led by Er. Mukesh Sah, we are dedicated to building safe, sustainable, and modern structures across Nepal.
             </p>
-            <div className="flex gap-4">
-              <a href={settings.facebookUrl} target="_blank" rel="noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition"><Facebook size={18} /></a>
-              <a href={`https://wa.me/${settings.whatsappNumber}`} target="_blank" rel="noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition"><MessageSquare size={18} /></a>
+            <div className="flex gap-3 flex-wrap">
+              <a href={settings.facebookUrl} target="_blank" rel="noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition" title="Facebook"><Facebook size={18} /></a>
+              <a href={settings.instagramUrl} target="_blank" rel="noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition" title="Instagram"><Instagram size={18} /></a>
+              <a href={settings.linkedinUrl} target="_blank" rel="noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition" title="LinkedIn"><Linkedin size={18} /></a>
+              <a href={`https://wa.me/${settings.whatsappNumber}`} target="_blank" rel="noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition" title="WhatsApp"><MessageSquare size={18} /></a>
+              <a href={`viber://chat?number=%2B${settings.whatsappNumber}`} target="_blank" rel="noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-secondary hover:text-primary transition" title="Viber"><PhoneCall size={18} /></a>
             </div>
           </div>
 

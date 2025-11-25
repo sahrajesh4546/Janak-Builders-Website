@@ -226,9 +226,8 @@ const ScientificCalculator: React.FC = () => {
     }
   };
 
-  // Removed h-full and replaced with h-auto and w-full to prevent layout breakage in new grid
   return (
-    <div className="bg-slate-800 p-4 rounded-2xl shadow-2xl border-t-4 border-secondary w-full h-auto flex flex-col relative overflow-hidden">
+    <div className="bg-slate-800 p-4 rounded-xl shadow-xl border-t-4 border-secondary w-full flex flex-col relative overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-600">
         <div className="flex items-center gap-3">
