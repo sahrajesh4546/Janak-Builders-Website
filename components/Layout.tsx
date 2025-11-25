@@ -32,9 +32,16 @@ const Layout: React.FC = () => {
       <header className="bg-primary dark:bg-gray-950 text-white sticky top-0 z-50 shadow-lg transition-colors duration-300">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="text-xl md:text-2xl font-serif font-bold flex flex-col leading-tight">
-            <span>{settings.companyName}</span>
-            <span className="text-xs font-sans font-normal text-secondary tracking-wider">QUALITY BUILDS THAT LAST</span>
+          <Link to="/" className="flex items-center gap-3 group">
+            {settings.logoUrl && (
+              <div className="bg-white p-1.5 rounded-md shadow-sm">
+                <img src={settings.logoUrl} alt="Janak Builders Logo" className="h-10 w-auto object-contain" />
+              </div>
+            )}
+            <div className="flex flex-col leading-tight">
+              <span className="text-xl md:text-2xl font-serif font-bold">{settings.companyName}</span>
+              <span className="text-xs font-sans font-normal text-secondary tracking-wider">QUALITY BUILDS THAT LAST</span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}

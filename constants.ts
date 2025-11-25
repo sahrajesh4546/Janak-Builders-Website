@@ -8,7 +8,8 @@ export const INITIAL_SETTINGS: SiteSettings = {
   address: "Kathmandu, Nepal",
   facebookUrl: "https://facebook.com",
   linkedinUrl: "https://linkedin.com",
-  whatsappNumber: "9779807850508"
+  whatsappNumber: "9779807850508",
+  logoUrl: "https://i.imgur.com/DA8XYIF.png"
 };
 
 export const INITIAL_SERVICES: Service[] = [

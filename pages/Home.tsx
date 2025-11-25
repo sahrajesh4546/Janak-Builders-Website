@@ -80,7 +80,7 @@ const Home: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="text-secondary mt-1 flex-shrink-0" size={24} /> 
-                  <span>Free Site Visit & Cost Estimation</span>
+                  <span>Site Visit & Cost Estimation</span>
                 </li>
               </ul>
             </div>
