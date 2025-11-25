@@ -10,17 +10,14 @@ const Layout: React.FC = () => {
   const [visitorCount, setVisitorCount] = useState<number>(15420);
 
   useEffect(() => {
-    // Simulate visitor count logic
+    // Simulate visitor count logic - Persistent storage
     const storedCount = localStorage.getItem('janak_visit_count');
     let count = storedCount ? parseInt(storedCount) : 15420;
 
-    // Increment count per session (using sessionStorage to track session)
-    if (!sessionStorage.getItem('janak_session_viewed')) {
-      const increment = Math.floor(Math.random() * 3) + 1; // Random increment 1-3 for realism
-      count += increment;
-      localStorage.setItem('janak_visit_count', count.toString());
-      sessionStorage.setItem('janak_session_viewed', 'true');
-    }
+    // Increment count every time the app loads (page refresh or new tab)
+    count += 1;
+    localStorage.setItem('janak_visit_count', count.toString());
+    
     setVisitorCount(count);
   }, []);
 
