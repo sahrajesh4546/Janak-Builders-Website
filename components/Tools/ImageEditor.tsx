@@ -63,13 +63,24 @@ const ImageEditor: React.FC = () => {
         },
       });
 
-      const part = response.candidates?.[0]?.content?.parts?.[0];
-      if (part && part.inlineData) {
-        const base64ImageBytes = part.inlineData.data;
-        const imageUrl = `data:image/png;base64,${base64ImageBytes}`;
-        setGeneratedImage(imageUrl);
+      // Iterate through parts to find the image part. 
+      // Sometimes model returns text thoughts before the image.
+      let generatedImageUrl = null;
+      const parts = response.candidates?.[0]?.content?.parts;
+      
+      if (parts) {
+        for (const part of parts) {
+          if (part.inlineData && part.inlineData.data) {
+            generatedImageUrl = `data:image/png;base64,${part.inlineData.data}`;
+            break;
+          }
+        }
+      }
+
+      if (generatedImageUrl) {
+        setGeneratedImage(generatedImageUrl);
       } else {
-        throw new Error("No image generated. Please try a different prompt.");
+        throw new Error("No image generated in the response. Please try a different prompt.");
       }
 
     } catch (err: any) {
@@ -122,7 +133,7 @@ const ImageEditor: React.FC = () => {
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     placeholder="e.g. 'Add a retro filter', 'Remove background'"
-                    className="flex-grow p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none"
+                    className="flex-grow p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none text-gray-900"
                 />
                 <button 
                     onClick={handleGenerate}

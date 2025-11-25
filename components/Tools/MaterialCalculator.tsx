@@ -132,13 +132,13 @@ const MaterialCalculator: React.FC = () => {
       {activeTab === 'csa' && (
         <div className="space-y-4 animate-in fade-in">
           <div className="flex gap-2 mb-2">
-             <select className="border p-2 rounded text-sm flex-1" value={csaType} onChange={(e:any) => setCsaType(e.target.value)}>
+             <select className="border p-2 rounded text-sm flex-1 text-gray-900" value={csaType} onChange={(e:any) => setCsaType(e.target.value)}>
                 <option value="concrete">RCC Concrete</option>
                 <option value="plaster">Plastering</option>
                 <option value="mortar">Mortar Only</option>
              </select>
              {csaType === 'concrete' && (
-               <select className="border p-2 rounded text-sm flex-1" value={mix} onChange={(e) => setMix(e.target.value)}>
+               <select className="border p-2 rounded text-sm flex-1 text-gray-900" value={mix} onChange={(e) => setMix(e.target.value)}>
                   <option value="M20">M20 (1:1.5:3)</option>
                   <option value="M15">M15 (1:2:4)</option>
                   <option value="M10">M10 (1:3:6)</option>
@@ -146,18 +146,18 @@ const MaterialCalculator: React.FC = () => {
              )}
           </div>
           <div className="grid grid-cols-3 gap-2">
-             <div><label className="text-xs font-bold">Length (ft)</label><input type="number" className="w-full border p-2 rounded" value={csaDim.l} onChange={e=>setCsaDim({...csaDim, l: Number(e.target.value)})}/></div>
-             <div><label className="text-xs font-bold">Width (ft)</label><input type="number" className="w-full border p-2 rounded" value={csaDim.w} onChange={e=>setCsaDim({...csaDim, w: Number(e.target.value)})}/></div>
-             <div><label className="text-xs font-bold">Thick (ft)</label><input type="number" className="w-full border p-2 rounded" value={csaDim.t} onChange={e=>setCsaDim({...csaDim, t: Number(e.target.value)})}/></div>
+             <div><label className="text-xs font-bold">Length (ft)</label><input type="number" className="w-full border p-2 rounded text-gray-900" value={csaDim.l} onChange={e=>setCsaDim({...csaDim, l: Number(e.target.value)})}/></div>
+             <div><label className="text-xs font-bold">Width (ft)</label><input type="number" className="w-full border p-2 rounded text-gray-900" value={csaDim.w} onChange={e=>setCsaDim({...csaDim, w: Number(e.target.value)})}/></div>
+             <div><label className="text-xs font-bold">Thick (ft)</label><input type="number" className="w-full border p-2 rounded text-gray-900" value={csaDim.t} onChange={e=>setCsaDim({...csaDim, t: Number(e.target.value)})}/></div>
           </div>
 
           <div className="bg-blue-50 p-4 rounded-lg space-y-2 text-gray-800">
-             <div className="flex justify-between text-sm"><span className="font-bold">Cement (50kg Bags):</span> <span>{csa.cement} bags</span></div>
-             <div className="flex justify-between text-sm"><span className="font-bold">Sand:</span> <span>{csa.sand} cu.ft</span></div>
-             {csaType === 'concrete' && <div className="flex justify-between text-sm"><span className="font-bold">Aggregate:</span> <span>{csa.agg} cu.ft</span></div>}
+             <div className="flex justify-between text-sm"><span className="font-bold text-gray-900">Cement (50kg Bags):</span> <span className="text-gray-900">{csa.cement} bags</span></div>
+             <div className="flex justify-between text-sm"><span className="font-bold text-gray-900">Sand:</span> <span className="text-gray-900">{csa.sand} cu.ft</span></div>
+             {csaType === 'concrete' && <div className="flex justify-between text-sm"><span className="font-bold text-gray-900">Aggregate:</span> <span className="text-gray-900">{csa.agg} cu.ft</span></div>}
              <div className="border-t border-blue-200 pt-2 mt-2 flex justify-between text-gray-900 font-bold">
-                <span>Est. Material Cost:</span>
-                <span>Rs. {csa.totalCost.toLocaleString()}</span>
+                <span className="text-gray-900">Est. Material Cost:</span>
+                <span className="text-gray-900">Rs. {csa.totalCost.toLocaleString()}</span>
              </div>
           </div>
         </div>
@@ -167,11 +167,11 @@ const MaterialCalculator: React.FC = () => {
       {activeTab === 'brick' && (
         <div className="space-y-4 animate-in fade-in">
            <div className="grid grid-cols-3 gap-2">
-             <div><label className="text-xs font-bold">Length (ft)</label><input type="number" className="w-full border p-2 rounded" value={brickDim.l} onChange={e=>setBrickDim({...brickDim, l: Number(e.target.value)})}/></div>
-             <div><label className="text-xs font-bold">Height (ft)</label><input type="number" className="w-full border p-2 rounded" value={brickDim.h} onChange={e=>setBrickDim({...brickDim, h: Number(e.target.value)})}/></div>
+             <div><label className="text-xs font-bold">Length (ft)</label><input type="number" className="w-full border p-2 rounded text-gray-900" value={brickDim.l} onChange={e=>setBrickDim({...brickDim, l: Number(e.target.value)})}/></div>
+             <div><label className="text-xs font-bold">Height (ft)</label><input type="number" className="w-full border p-2 rounded text-gray-900" value={brickDim.h} onChange={e=>setBrickDim({...brickDim, h: Number(e.target.value)})}/></div>
              <div>
                <label className="text-xs font-bold">Wall Type</label>
-               <select className="w-full border p-2 rounded h-[42px]" value={brickDim.thick} onChange={e=>setBrickDim({...brickDim, thick: Number(e.target.value)})}>
+               <select className="w-full border p-2 rounded h-[42px] text-gray-900" value={brickDim.thick} onChange={e=>setBrickDim({...brickDim, thick: Number(e.target.value)})}>
                  <option value={9}>9" (Full Brick)</option>
                  <option value={4}>4" (Half Brick)</option>
                </select>
@@ -179,12 +179,12 @@ const MaterialCalculator: React.FC = () => {
           </div>
           
           <div className="bg-orange-50 p-4 rounded-lg space-y-2 text-gray-800">
-             <div className="flex justify-between text-sm"><span className="font-bold">Total Bricks:</span> <span>{brick.bricks} pcs</span></div>
-             <div className="flex justify-between text-sm"><span>(Mortar Est.) Cement:</span> <span>{brick.cement} bags</span></div>
-             <div className="flex justify-between text-sm"><span>(Mortar Est.) Sand:</span> <span>{brick.sand} cu.ft</span></div>
+             <div className="flex justify-between text-sm"><span className="font-bold text-gray-900">Total Bricks:</span> <span className="text-gray-900">{brick.bricks} pcs</span></div>
+             <div className="flex justify-between text-sm"><span className="text-gray-900">(Mortar Est.) Cement:</span> <span className="text-gray-900">{brick.cement} bags</span></div>
+             <div className="flex justify-between text-sm"><span className="text-gray-900">(Mortar Est.) Sand:</span> <span className="text-gray-900">{brick.sand} cu.ft</span></div>
              <div className="border-t border-orange-200 pt-2 mt-2 flex justify-between text-gray-900 font-bold">
-                <span>Est. Material Cost:</span>
-                <span>Rs. {brick.totalCost.toLocaleString()}</span>
+                <span className="text-gray-900">Est. Material Cost:</span>
+                <span className="text-gray-900">Rs. {brick.totalCost.toLocaleString()}</span>
              </div>
           </div>
         </div>
@@ -195,7 +195,7 @@ const MaterialCalculator: React.FC = () => {
         <div className="space-y-4 animate-in fade-in">
            <div className="grid grid-cols-3 gap-2">
              <div><label className="text-xs font-bold">Diameter (mm)</label>
-               <select className="w-full border p-2 rounded" value={steel.dia} onChange={e=>setSteel({...steel, dia: Number(e.target.value)})}>
+               <select className="w-full border p-2 rounded text-gray-900" value={steel.dia} onChange={e=>setSteel({...steel, dia: Number(e.target.value)})}>
                  <option value={8}>8mm</option>
                  <option value={10}>10mm</option>
                  <option value={12}>12mm</option>
@@ -204,16 +204,16 @@ const MaterialCalculator: React.FC = () => {
                  <option value={25}>25mm</option>
                </select>
              </div>
-             <div><label className="text-xs font-bold">Len/Bar (ft)</label><input type="number" className="w-full border p-2 rounded" value={steel.len} onChange={e=>setSteel({...steel, len: Number(e.target.value)})}/></div>
-             <div><label className="text-xs font-bold">Quantity</label><input type="number" className="w-full border p-2 rounded" value={steel.count} onChange={e=>setSteel({...steel, count: Number(e.target.value)})}/></div>
+             <div><label className="text-xs font-bold">Len/Bar (ft)</label><input type="number" className="w-full border p-2 rounded text-gray-900" value={steel.len} onChange={e=>setSteel({...steel, len: Number(e.target.value)})}/></div>
+             <div><label className="text-xs font-bold">Quantity</label><input type="number" className="w-full border p-2 rounded text-gray-900" value={steel.count} onChange={e=>setSteel({...steel, count: Number(e.target.value)})}/></div>
           </div>
 
           <div className="bg-gray-50 p-4 rounded-lg space-y-2 text-gray-800">
-             <div className="flex justify-between text-sm"><span className="font-bold">Total Weight:</span> <span>{rebar.weight} kg</span></div>
+             <div className="flex justify-between text-sm"><span className="font-bold text-gray-900">Total Weight:</span> <span className="text-gray-900">{rebar.weight} kg</span></div>
              <div className="text-xs text-gray-500 text-right">Based on D²/162 formula</div>
              <div className="border-t border-gray-200 pt-2 mt-2 flex justify-between text-gray-900 font-bold">
-                <span>Est. Steel Cost:</span>
-                <span>Rs. {Math.round(rebar.cost).toLocaleString()}</span>
+                <span className="text-gray-900">Est. Steel Cost:</span>
+                <span className="text-gray-900">Rs. {Math.round(rebar.cost).toLocaleString()}</span>
              </div>
           </div>
         </div>
@@ -226,11 +226,11 @@ const MaterialCalculator: React.FC = () => {
                <DollarSign size={12}/> Edit Market Rates (NPR)
             </summary>
             <div className="grid grid-cols-2 gap-2 mt-2 bg-gray-50 p-2 rounded text-xs">
-               <div><label>Cement (Bag)</label><input type="number" className="w-full border rounded p-1" value={rates.cement} onChange={e=>setRates({...rates, cement: Number(e.target.value)})}/></div>
-               <div><label>Sand (Cu.ft)</label><input type="number" className="w-full border rounded p-1" value={rates.sand} onChange={e=>setRates({...rates, sand: Number(e.target.value)})}/></div>
-               <div><label>Agg. (Cu.ft)</label><input type="number" className="w-full border rounded p-1" value={rates.agg} onChange={e=>setRates({...rates, agg: Number(e.target.value)})}/></div>
-               <div><label>Brick (Pc)</label><input type="number" className="w-full border rounded p-1" value={rates.brick} onChange={e=>setRates({...rates, brick: Number(e.target.value)})}/></div>
-               <div><label>Steel (Kg)</label><input type="number" className="w-full border rounded p-1" value={rates.steel} onChange={e=>setRates({...rates, steel: Number(e.target.value)})}/></div>
+               <div><label>Cement (Bag)</label><input type="number" className="w-full border rounded p-1 text-gray-900" value={rates.cement} onChange={e=>setRates({...rates, cement: Number(e.target.value)})}/></div>
+               <div><label>Sand (Cu.ft)</label><input type="number" className="w-full border rounded p-1 text-gray-900" value={rates.sand} onChange={e=>setRates({...rates, sand: Number(e.target.value)})}/></div>
+               <div><label>Agg. (Cu.ft)</label><input type="number" className="w-full border rounded p-1 text-gray-900" value={rates.agg} onChange={e=>setRates({...rates, agg: Number(e.target.value)})}/></div>
+               <div><label>Brick (Pc)</label><input type="number" className="w-full border rounded p-1 text-gray-900" value={rates.brick} onChange={e=>setRates({...rates, brick: Number(e.target.value)})}/></div>
+               <div><label>Steel (Kg)</label><input type="number" className="w-full border rounded p-1 text-gray-900" value={rates.steel} onChange={e=>setRates({...rates, steel: Number(e.target.value)})}/></div>
             </div>
          </details>
       </div>

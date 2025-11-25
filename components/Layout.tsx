@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useSite } from '../context/SiteContext';
-import { Menu, X, Phone, Mail, Facebook, Linkedin, MessageSquare, LogIn, LayoutDashboard, Sun, Moon } from 'lucide-react';
+import { Menu, X, Phone, Mail, Facebook, Linkedin, MessageSquare, LogIn, LayoutDashboard, Sun, Moon, Eye } from 'lucide-react';
 
 const Layout: React.FC = () => {
   const { settings, isAuthenticated, theme, toggleTheme } = useSite();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const [visitorCount, setVisitorCount] = useState<number>(15420);
+
+  useEffect(() => {
+    // Simulate visitor count logic
+    const storedCount = localStorage.getItem('janak_visit_count');
+    let count = storedCount ? parseInt(storedCount) : 15420;
+
+    // Increment count per session (using sessionStorage to track session)
+    if (!sessionStorage.getItem('janak_session_viewed')) {
+      const increment = Math.floor(Math.random() * 3) + 1; // Random increment 1-3 for realism
+      count += increment;
+      localStorage.setItem('janak_visit_count', count.toString());
+      sessionStorage.setItem('janak_session_viewed', 'true');
+    }
+    setVisitorCount(count);
+  }, []);
 
   const isActive = (path: string) => location.pathname === path ? 'text-secondary' : 'text-white hover:text-secondary';
 
@@ -117,12 +133,12 @@ const Layout: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow bg-neutral-100 dark:bg-gray-900 transition-colors duration-300">
+      <main className="flex-grow bg-neutral-100 dark:bg-gray-900 transition-colors duration-300 w-full">
         <Outlet />
       </main>
 
       {/* Footer */}
-      <footer className="bg-primary dark:bg-gray-950 text-white pt-16 pb-8 border-t-4 border-secondary transition-colors duration-300">
+      <footer className="bg-primary dark:bg-gray-950 text-white pt-16 pb-8 border-t-4 border-secondary transition-colors duration-300 w-full">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           
           {/* About */}
@@ -170,8 +186,17 @@ const Layout: React.FC = () => {
           </div>
         </div>
         
-        <div className="text-center text-gray-500 text-sm border-t border-blue-900 dark:border-gray-800 pt-8">
-          &copy; {new Date().getFullYear()} {settings.companyName}. All Rights Reserved.
+        <div className="flex flex-col items-center justify-center border-t border-blue-900 dark:border-gray-800 pt-8">
+          <div className="mb-4 bg-white/5 px-4 py-1 rounded-full border border-white/10 flex items-center gap-2 text-sm text-secondary font-mono">
+             <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+             </span>
+             Website Visits: {visitorCount.toLocaleString()}
+          </div>
+          <div className="text-center text-gray-500 text-sm">
+            &copy; {new Date().getFullYear()} {settings.companyName}. All Rights Reserved.
+          </div>
         </div>
       </footer>
     </div>

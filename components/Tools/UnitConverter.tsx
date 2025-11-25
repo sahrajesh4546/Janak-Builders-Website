@@ -94,7 +94,7 @@ const UnitConverter: React.FC = () => {
           type="number" 
           value={sqFt} 
           onChange={(e) => setSqFt(Math.max(0, Number(e.target.value)))}
-          className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none"
+          className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none text-gray-900"
         />
       </div>
 
@@ -150,7 +150,7 @@ const UnitConverter: React.FC = () => {
               type="number" 
               value={quickAana}
               onChange={(e) => handleAanaChange(e.target.value)}
-              className="w-full p-2 border rounded text-sm"
+              className="w-full p-2 border rounded text-sm text-gray-900"
               placeholder="Aana"
             />
           </div>
@@ -161,7 +161,7 @@ const UnitConverter: React.FC = () => {
               type="number" 
               value={quickDhur}
               onChange={(e) => handleDhurChange(e.target.value)}
-              className="w-full p-2 border rounded text-sm"
+              className="w-full p-2 border rounded text-sm text-gray-900"
               placeholder="Dhur"
             />
           </div>

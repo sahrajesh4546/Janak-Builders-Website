@@ -1,6 +1,53 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { History, Trash2, Delete, Activity } from 'lucide-react';
 
+const Btn = ({ 
+  label, 
+  onClick, 
+  subLabel = null, 
+  variant = 'dark',
+  active = false,
+  cols = 1
+}: { 
+  label: React.ReactNode, 
+  onClick?: () => void, 
+  subLabel?: string | null,
+  variant?: 'dark' | 'primary' | 'secondary' | 'accent' | 'danger' | 'light',
+  active?: boolean,
+  cols?: number
+}) => {
+  const baseStyles = "relative h-14 rounded-lg font-bold text-lg transition-all active:scale-95 flex flex-col items-center justify-center shadow-sm border-b-4 active:border-b-0 active:translate-y-1 select-none";
+  
+  const variants = {
+    dark: "bg-slate-700 text-white border-slate-900 hover:bg-slate-600",
+    primary: "bg-blue-600 text-white border-blue-800 hover:bg-blue-500",
+    secondary: "bg-yellow-500 text-slate-900 border-yellow-700 hover:bg-yellow-400",
+    accent: "bg-indigo-600 text-white border-indigo-800 hover:bg-indigo-500",
+    danger: "bg-red-500 text-white border-red-700 hover:bg-red-400",
+    light: "bg-gray-200 text-slate-900 border-gray-400 hover:bg-white"
+  };
+
+  const activeStyle = "bg-yellow-400 text-slate-900 border-yellow-600 translate-y-1 border-b-0 shadow-inner";
+  const style = active ? activeStyle : (variants[variant] || variants.dark);
+  
+  // Explicit col classes map to ensure Tailwind works without dynamic class names
+  const colClasses: Record<number, string> = {
+      1: 'col-span-1',
+      2: 'col-span-2',
+      3: 'col-span-3',
+      4: 'col-span-4',
+      5: 'col-span-5'
+  };
+  const colClass = colClasses[cols] || 'col-span-1';
+
+  return (
+    <button onClick={onClick} className={`${baseStyles} ${style} ${colClass}`} style={{ gridColumn: `span ${cols}` }}>
+      {subLabel && <span className={`text-[10px] absolute top-1 left-1.5 leading-none ${variant === 'light' ? 'text-slate-500' : 'text-yellow-400'} opacity-90 font-normal`}>{subLabel}</span>}
+      <span className={subLabel ? 'mt-3' : ''}>{label}</span>
+    </button>
+  );
+};
+
 const ScientificCalculator: React.FC = () => {
   const [display, setDisplay] = useState('0');
   const [expression, setExpression] = useState('');
@@ -179,55 +226,9 @@ const ScientificCalculator: React.FC = () => {
     }
   };
 
-  const Btn = ({ 
-    label, 
-    onClick, 
-    subLabel = null, 
-    variant = 'dark',
-    active = false,
-    cols = 1
-  }: { 
-    label: React.ReactNode, 
-    onClick?: () => void, 
-    subLabel?: string | null,
-    variant?: 'dark' | 'primary' | 'secondary' | 'accent' | 'danger' | 'light',
-    active?: boolean,
-    cols?: number
-  }) => {
-    const baseStyles = "relative h-14 rounded-lg font-bold text-lg transition-all active:scale-95 flex flex-col items-center justify-center shadow-sm border-b-4 active:border-b-0 active:translate-y-1 select-none";
-    
-    const variants = {
-      dark: "bg-slate-700 text-white border-slate-900 hover:bg-slate-600",
-      primary: "bg-blue-600 text-white border-blue-800 hover:bg-blue-500",
-      secondary: "bg-yellow-500 text-slate-900 border-yellow-700 hover:bg-yellow-400",
-      accent: "bg-indigo-600 text-white border-indigo-800 hover:bg-indigo-500",
-      danger: "bg-red-500 text-white border-red-700 hover:bg-red-400",
-      light: "bg-gray-200 text-slate-900 border-gray-400 hover:bg-white"
-    };
-
-    const activeStyle = "bg-yellow-400 text-slate-900 border-yellow-600 translate-y-1 border-b-0 shadow-inner";
-    const style = active ? activeStyle : (variants[variant] || variants.dark);
-    
-    // Explicit col classes map to ensure Tailwind works without dynamic class names
-    const colClasses: Record<number, string> = {
-        1: 'col-span-1',
-        2: 'col-span-2',
-        3: 'col-span-3',
-        4: 'col-span-4',
-        5: 'col-span-5'
-    };
-    const colClass = colClasses[cols] || 'col-span-1';
-
-    return (
-      <button onClick={onClick} className={`${baseStyles} ${style} ${colClass}`} style={{ gridColumn: `span ${cols}` }}>
-        {subLabel && <span className={`text-[10px] absolute top-1 left-1.5 leading-none ${variant === 'light' ? 'text-slate-500' : 'text-yellow-400'} opacity-90 font-normal`}>{subLabel}</span>}
-        <span className={subLabel ? 'mt-3' : ''}>{label}</span>
-      </button>
-    );
-  };
-
+  // Removed h-full and replaced with h-auto and w-full to prevent layout breakage in new grid
   return (
-    <div className="bg-slate-800 p-4 rounded-2xl shadow-2xl border-t-4 border-secondary h-full flex flex-col relative overflow-hidden">
+    <div className="bg-slate-800 p-4 rounded-2xl shadow-2xl border-t-4 border-secondary w-full h-auto flex flex-col relative overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-600">
         <div className="flex items-center gap-3">
@@ -284,7 +285,7 @@ const ScientificCalculator: React.FC = () => {
       )}
 
       {/* Keypad Grid - 5 Columns */}
-      <div className="grid grid-cols-5 gap-2 md:gap-2.5 flex-grow content-end">
+      <div className="grid grid-cols-5 gap-2 md:gap-2.5 content-end">
         {/* Row 1 - Modifiers */}
         <Btn label="SHIFT" onClick={() => setIsShift(!isShift)} active={isShift} variant="accent" />
         <Btn label={isRad ? "RAD" : "DEG"} onClick={() => setIsRad(!isRad)} variant="dark" />

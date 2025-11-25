@@ -1,5 +1,8 @@
 import { Project, Service, SiteSettings, Testimonial } from './types';
 
+// Google Analytics Measurement ID
+export const GA_ID = "G-MEASUREMENT_ID"; // Replace this with your actual ID
+
 export const INITIAL_SETTINGS: SiteSettings = {
   companyName: "Janak Builders Pvt. Ltd.",
   tagline: "Quality Builds That Last",
@@ -46,51 +49,51 @@ export const INITIAL_SERVICES: Service[] = [
 export const INITIAL_PROJECTS: Project[] = [
   {
     id: 'p1',
-    title: 'Kathmandu Corporate Hub',
+    title: 'Commercial Complex Construction',
     category: 'Commercial',
-    description: 'A 12-story commercial complex in the heart of Baneshwor.',
+    description: 'A modern 8-story commercial complex with shopping malls, underground parking, and corporate offices.',
     imageUrl: 'https://picsum.photos/id/122/800/600',
-    location: 'Baneshwor, Kathmandu'
+    location: 'Dhangadhi, Kailali'
   },
   {
     id: 'p2',
-    title: 'Lalitpur Modern Residence',
+    title: 'Residential Housing Development',
     category: 'Residential',
-    description: 'A luxury private residence combining traditional Newari architecture with modern amenities.',
+    description: 'Integrated community housing project featuring 25 modern earthquake-resistant standalone units.',
     imageUrl: 'https://picsum.photos/id/188/800/600',
-    location: 'Sanepa, Lalitpur'
+    location: 'Rajbiraj, Saptari'
   },
   {
     id: 'p3',
-    title: 'Bagmati River Bridge',
-    category: 'Infrastructure',
-    description: 'Structural reinforcement and expansion of a key connecting bridge.',
+    title: 'Traditional Monastery Project',
+    category: 'Heritage',
+    description: 'Construction of a traditional Buddhist monastery (Gumba) with meditation halls and landscaping.',
     imageUrl: 'https://picsum.photos/id/227/800/600',
-    location: 'Kathmandu Valley'
+    location: 'Lumbini, Nepal'
   },
   {
     id: 'p4',
-    title: 'Pokhara Lake View Resort',
-    category: 'Commercial',
-    description: 'Eco-friendly resort construction overlooking Phewa Lake.',
-    imageUrl: 'https://picsum.photos/id/164/800/600',
-    location: 'Pokhara, Kaski'
+    title: 'Heritage Structure Retrofitting',
+    category: 'Renovation',
+    description: 'Structural retrofitting and aesthetic restoration of a 200-year-old stone masonry Gumba.',
+    imageUrl: 'https://picsum.photos/id/203/800/600',
+    location: 'Upper Mustang'
   },
   {
     id: 'p5',
-    title: 'Heritage Home Restoration',
-    category: 'Renovation',
-    description: 'Restoring a 100-year-old Rana-style building.',
-    imageUrl: 'https://picsum.photos/id/203/800/600',
-    location: 'Patan'
+    title: 'High-Altitude Public Infrastructure',
+    category: 'Infrastructure',
+    description: 'Community center designed with specialized insulation and materials to withstand extreme weather.',
+    imageUrl: 'https://picsum.photos/id/204/800/600',
+    location: 'Manang, Gandaki'
   },
   {
     id: 'p6',
-    title: 'Sunrise Apartments',
-    category: 'Residential',
-    description: 'Affordable housing project with 50 units.',
-    imageUrl: 'https://picsum.photos/id/204/800/600',
-    location: 'Bhaktapur'
+    title: 'Healthcare Facility Engineering',
+    category: 'Commercial',
+    description: 'Structural expansion and interior finishing for a multi-specialty hospital wing.',
+    imageUrl: 'https://picsum.photos/id/164/800/600',
+    location: 'Biratnagar, Nepal'
   }
 ];
 

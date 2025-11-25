@@ -10,6 +10,7 @@ import Contact from './pages/Contact';
 import ToolsPage from './pages/ToolsPage';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import GoogleAnalyticsTracker from './components/GoogleAnalyticsTracker';
 
 // Protected Route Wrapper
 const ProtectedRoute: React.FC<{ children: React.ReactElement }> = ({ children }) => {
@@ -23,6 +24,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactElement }> = ({ children }
 const AppRoutes = () => {
   return (
     <Router>
+      <GoogleAnalyticsTracker />
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Layout />}>

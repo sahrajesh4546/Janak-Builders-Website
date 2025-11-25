@@ -109,7 +109,7 @@ const ImageAnalyzer: React.FC = () => {
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder="e.g., 'Assess the brickwork quality' or 'Identify safety hazards'"
-                className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none"
+                className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none text-gray-900"
             />
              <button 
                 onClick={handleAnalyze}

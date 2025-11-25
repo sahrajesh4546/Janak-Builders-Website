@@ -25,7 +25,7 @@ const CostEstimator: React.FC = () => {
             type="number" 
             value={area} 
             onChange={(e) => setArea(Number(e.target.value))}
-            className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none"
+            className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none text-gray-900"
           />
         </div>
         <div>
@@ -34,7 +34,7 @@ const CostEstimator: React.FC = () => {
             type="number" 
             value={floors} 
             onChange={(e) => setFloors(Number(e.target.value))}
-            className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none"
+            className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary outline-none text-gray-900"
           />
         </div>
         <div className="md:col-span-2">
