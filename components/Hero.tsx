@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <Link to="/contact" className="bg-secondary text-primary hover:bg-yellow-400 font-bold py-3 px-8 rounded-full transition transform hover:scale-105 shadow-lg">
-              Get Free Estimate
+              Get Estimate
             </Link>
             <Link to="/projects" className="border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-3 px-8 rounded-full transition">
               Explore Our Projects

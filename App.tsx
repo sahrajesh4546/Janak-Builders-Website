@@ -11,6 +11,7 @@ import ToolsPage from './pages/ToolsPage';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import GoogleAnalyticsTracker from './components/GoogleAnalyticsTracker';
+import ApiKeySelection from './components/ApiKeySelection';
 
 // Protected Route Wrapper
 const ProtectedRoute: React.FC<{ children: React.ReactElement }> = ({ children }) => {
@@ -54,7 +55,9 @@ const AppRoutes = () => {
 const App: React.FC = () => {
   return (
     <SiteProvider>
-      <AppRoutes />
+      <ApiKeySelection>
+        <AppRoutes />
+      </ApiKeySelection>
     </SiteProvider>
   );
 };
