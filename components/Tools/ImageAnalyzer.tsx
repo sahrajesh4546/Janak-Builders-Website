@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import { GoogleGenAI } from "@google/genai";
-import { Search, Upload, Loader2, FileText, ScanEye } from 'lucide-react';
+import { Search, Upload, Loader2, FileText, ScanEye, Activity, Triangle, Zap, Ruler } from 'lucide-react';
 
 const ImageAnalyzer: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [prompt, setPrompt] = useState('');
+  const [mode, setMode] = useState('general');
+  const [customPrompt, setCustomPrompt] = useState('');
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const modes = [
+    { id: 'general', label: 'General Site Analysis', icon: <Search size={16}/>, prompt: "Analyze this image and identify key elements, materials, and any potential issues." },
+    { id: 'structural', label: 'Structural Integrity Checker', icon: <Triangle size={16}/>, prompt: "Act as a Structural Engineer. Analyze this image for cracks, load path issues, deflection, or construction defects. Provide a safety assessment." },
+    { id: 'electrical', label: 'Circuit & Resistor Helper', icon: <Zap size={16}/>, prompt: "Act as an Electrical Engineer. If this is a circuit, check connections. If this is a resistor, identify the color code and value." },
+    { id: 'blueprint', label: 'Blueprint Auto-Reader', icon: <Ruler size={16}/>, prompt: "Analyze this technical drawing. Extract major dimensions, room names, and scale information if visible." },
+    { id: 'safety', label: 'HSE Safety Inspector', icon: <Activity size={16}/>, prompt: "Act as a Safety Officer. Identify any PPE violations, trip hazards, or unsafe working conditions in this site photo." },
+  ];
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -39,7 +48,8 @@ const ImageAnalyzer: React.FC = () => {
         reader.readAsDataURL(selectedFile);
       });
 
-      const userPrompt = prompt || "Analyze this construction or architectural image. Identify key materials, structural elements, style, and any visible defects or safety observations.";
+      const selectedMode = modes.find(m => m.id === mode);
+      const userPrompt = `${selectedMode?.prompt} ${customPrompt ? `\nUser Specific Question: ${customPrompt}` : ''}`;
 
       const response = await ai.models.generateContent({
         model: 'gemini-3-pro-preview',
@@ -75,7 +85,7 @@ const ImageAnalyzer: React.FC = () => {
             <ScanEye size={28} />
         </div>
         <div>
-            <h3 className="text-2xl font-bold text-gray-900">Site Analyzer</h3>
+            <h3 className="text-2xl font-bold text-gray-900">AI Engineer Eye</h3>
             <p className="text-sm text-gray-500 font-medium">Gemini 3.0 Pro</p>
         </div>
       </div>
@@ -96,28 +106,44 @@ const ImageAnalyzer: React.FC = () => {
             ) : (
                 <div className="flex flex-col items-center text-gray-400">
                     <Upload size={48} className="mb-4 text-secondary" />
-                    <p className="text-lg font-bold text-gray-700">Upload site photo</p>
-                    <p className="text-sm font-medium mt-1 text-gray-500">For material or structural analysis</p>
+                    <p className="text-lg font-bold text-gray-700">Upload Photo / Blueprint</p>
+                    <p className="text-sm font-medium mt-1 text-gray-500">For instant AI analysis</p>
                 </div>
             )}
         </div>
 
-        <div>
-            <label className="block text-xs font-bold text-gray-800 uppercase tracking-wide mb-3">Analysis Questions</label>
-            <input 
-                type="text"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                placeholder="e.g., 'Assess the brickwork quality' or 'Identify safety hazards'"
-                className="w-full p-4 border-2 border-gray-300 rounded-xl focus:border-secondary focus:ring-0 outline-none text-gray-900 font-medium bg-white"
-            />
+        <div className="space-y-4">
+            <div>
+                <label className="block text-xs font-bold text-gray-800 uppercase tracking-wide mb-2">Analysis Mode</label>
+                <div className="grid grid-cols-1 gap-2">
+                    <select 
+                        value={mode} 
+                        onChange={(e) => setMode(e.target.value)}
+                        className="w-full p-4 border-2 border-gray-300 rounded-xl focus:border-secondary outline-none text-gray-900 font-bold bg-white"
+                    >
+                        {modes.map(m => <option key={m.id} value={m.id}>{m.label}</option>)}
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label className="block text-xs font-bold text-gray-800 uppercase tracking-wide mb-2">Specific Question (Optional)</label>
+                <input 
+                    type="text"
+                    value={customPrompt}
+                    onChange={(e) => setCustomPrompt(e.target.value)}
+                    placeholder="e.g. 'Is this crack dangerous?'"
+                    className="w-full p-4 border-2 border-gray-300 rounded-xl focus:border-secondary focus:ring-0 outline-none text-gray-900 font-medium bg-white"
+                />
+            </div>
+
              <button 
                 onClick={handleAnalyze}
                 disabled={loading || !selectedFile}
-                className={`mt-4 w-full bg-primary text-white font-bold text-lg py-4 rounded-xl hover:bg-blue-900 transition flex items-center justify-center gap-3 shadow-lg ${loading || !selectedFile ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`w-full bg-primary text-white font-bold text-lg py-4 rounded-xl hover:bg-blue-900 transition flex items-center justify-center gap-3 shadow-lg ${loading || !selectedFile ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-                {loading ? <Loader2 size={24} className="animate-spin" /> : <Search size={24} />}
-                {loading ? 'Analyzing...' : 'Analyze Image'}
+                {loading ? <Loader2 size={24} className="animate-spin" /> : <ScanEye size={24} />}
+                {loading ? 'Analyzing...' : 'Run Analysis'}
             </button>
         </div>
 
